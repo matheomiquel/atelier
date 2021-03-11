@@ -14,8 +14,8 @@ app.use(passport.initialize());
 passport.use(strategy);
 
 app.use('/api', catController)
-app.listen(3000, function () {
-    console.log(`Express is running on port 3000`);
+app.listen(8000, function () {
+    console.log(`Express is running on port 8000`);
 });
 
 module.exports = app
