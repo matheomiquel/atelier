@@ -65,7 +65,6 @@ export default {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then((response) => {
-          console.log(response.data);
           this.$emit("close", response.data);
         })
         .catch((err) => {

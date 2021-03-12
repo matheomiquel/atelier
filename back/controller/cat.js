@@ -112,13 +112,9 @@ app.get('/count', async function (req, res) {
     res.json(cat);
 })
 app.post('/create', upload.single('avatar'), async function (req, res) {
-    console.log({
-        body: req.body
-    })
     if (req.fileValidationError) {
         return res.json(req.fileValidationError).status(400)
     }
-    console.log(req.file)
     const data = {
         name: req.body.name,
         description: req.body.description,

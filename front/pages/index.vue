@@ -49,8 +49,6 @@ export default {
           };
           this.cat.push(data);
         });
-
-        console.log(this.cat);
       });
     },
     vote: function (cat) {

@@ -92,7 +92,6 @@ export default {
     },
     getCats: function (offset, limit) {
       const data = { offset, limit };
-      console.log(data);
       this.$axios
         .get(`/cat/readLimit/${this.offset}/${this.limit}`, data)
         .then((response) => {
@@ -107,8 +106,6 @@ export default {
             };
             this.cat.push(data);
           });
-
-          console.log(this.cat);
         });
     },
   },
