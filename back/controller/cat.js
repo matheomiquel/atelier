@@ -14,7 +14,6 @@ let storage = multer.diskStorage({
         cb(null, 'cat/')
     },
     filename: function (req, file, cb) {
-        console.log(Date.now())
         cb(null, `${Date.now()}.${file.mimetype.split('/')[1]}`) //Appending .jpg
     }
 })
@@ -22,7 +21,6 @@ const upload = multer({
     dest: 'cat/',
     preservePath: true,
     fileFilter: function (req, file, cb) {
-        console.log("here")
         if (file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png') {
             req.fileValidationError = "le format d'image n'est pas le bon, format accepter jpeg,png";
             return cb(null, false, new Error("le format d'image n'est pas le bon"));
@@ -83,7 +81,6 @@ app.get('/twoCats', async function (req, res) {
             id: [idArray[firstId], idArray[secondId]]
         }
     });
-    console.log(cat)
     res.json(cat).status(200)
 })
 app.get('/file/:id', async function (req, res) {
@@ -98,10 +95,30 @@ app.get('/file/:id', async function (req, res) {
     }
     res.sendFile(`${dirname}/${cat.path}`);
 })
+
+app.get('/readLimit/:offset/:limit', async function (req, res) {
+    const limits = {
+        offset: Number(req.params.offset),
+        limit: Number(req.params.limit),
+    }
+    const cat = await catModel.findAll({
+        ...limits
+    });
+    res.json(cat);
+})
+
+app.get('/count', async function (req, res) {
+    const cat = await catModel.count();
+    res.json(cat);
+})
 app.post('/create', upload.single('avatar'), async function (req, res) {
+    console.log({
+        body: req.body
+    })
     if (req.fileValidationError) {
         return res.json(req.fileValidationError).status(400)
     }
+    console.log(req.file)
     const data = {
         name: req.body.name,
         description: req.body.description,
@@ -110,8 +127,7 @@ app.post('/create', upload.single('avatar'), async function (req, res) {
     }
     const cat = await catModel.create(data);
     idArray.push(cat.id)
-
-    res.json("jourbi").status(201);
+    res.json(`Le chat ${cat.name} a bien été ajouté`).status(201);
 })
 app.put('/vote/:id', async function (req, res) {
     const cat = await catModel.findOne({
@@ -120,12 +136,16 @@ app.put('/vote/:id', async function (req, res) {
         }
     })
     if (!cat) {
-        return res.json("Le chat n'a pas été trouvé").status(404)
+        return res.json("Le chat n'a pas été trouvé", 404).status(404)
     }
     cat.update({
         vote: cat.vote + 1
     })
-    res.json(`le vote est maintenant à ${cat.vote}`).status(200)
+    res.json(`
+                        le vote est maintenant à $ {
+                            cat.vote
+                        }
+                        `).status(200)
 })
 app.delete('/delete/:id', async function (req, res) {
     const result = await catModel.findOne({
@@ -145,7 +165,10 @@ app.delete('/delete/:id', async function (req, res) {
     if (index > -1) {
         idArray.splice(index, 1);
     }
-    fs.unlinkSync(`./${result.path}`)
+    fs.unlinkSync(`. / $ {
+                            result.path
+                        }
+                        `)
     res.json("le chat à été supprimer")
 })
 module.exports = app;
