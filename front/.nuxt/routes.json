@@ -3,12 +3,14 @@
     "name": "cat",
     "path": "/cat",
     "component": "/Users/matheomiquel/atelier/front/pages/cat.vue",
-    "chunkName": "pages/cat"
+    "chunkName": "pages/cat",
+    "_name": "_7d727e98"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/matheomiquel/atelier/front/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_5a165230"
   }
 ]

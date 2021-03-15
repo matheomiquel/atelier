@@ -62,6 +62,7 @@ export default {
       if (response) {
         this.text = response;
         this.snackbar = true;
+        this.getCats();
       }
     },
     next: function () {
@@ -84,6 +85,7 @@ export default {
     },
     countCat: function () {
       this.$axios.get("/cat/count").then((response) => {
+        console.log(response);
         this.catNumber = response.data;
         if (response.data > 5) {
           this.nextModel = true;
