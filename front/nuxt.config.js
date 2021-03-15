@@ -6,7 +6,7 @@ export default {
       * dbUri is accessible from both client and server side.
       */
     dbUri: "atelier"  
-  }
+  },
   modules: [
     '@nuxtjs/proxy',
     '@nuxtjs/axios'
