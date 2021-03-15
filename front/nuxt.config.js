@@ -1,6 +1,12 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  env: {
+    /**
+      * dbUri is accessible from both client and server side.
+      */
+    dbUri: "atelier"  
+  }
   modules: [
     '@nuxtjs/proxy',
     '@nuxtjs/axios'
