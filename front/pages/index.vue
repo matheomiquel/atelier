@@ -20,7 +20,7 @@ export default {
       snackbar: false,
       text: "",
       title: "Hello World!",
-      url: "http://localhost:8000/api/file/",
+      url: "ipPublic",
       cat: [
         {
           path: "",

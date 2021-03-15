@@ -36,7 +36,7 @@ export default {
       snackbar: false,
       text: "",
       title: "Hello World!",
-      url: "http://localhost:8000/api/file/",
+      url: "ipPublic",
       limit: 5,
       offset: 0,
       catNumber: 0,
