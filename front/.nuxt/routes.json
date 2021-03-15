@@ -1,0 +1,14 @@
+[
+  {
+    "name": "cat",
+    "path": "/cat",
+    "component": "/Users/matheomiquel/atelier/front/pages/cat.vue",
+    "chunkName": "pages/cat"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/matheomiquel/atelier/front/pages/index.vue",
+    "chunkName": "pages/index"
+  }
+]
